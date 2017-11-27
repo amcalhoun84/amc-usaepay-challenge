@@ -1,3 +1,5 @@
+/** This most likely will never be used as this is a simple SPA App to do transactions, refunds, voids, and possibly getting transactions if we have time and/or are lucky. **/
+
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 describe('AppComponent', () => {

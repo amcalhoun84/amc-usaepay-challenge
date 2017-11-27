@@ -1,0 +1,103 @@
+div { 
+	background-color: #fff;
+	padding: 15px;
+}
+
+input { 
+	width: 250px;
+}
+
+p { width: 750px; }
+
+input[type=text], select { 
+	padding: 10px 15px;
+	margin: 6px 0;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+input[type=email], select { 
+	padding: 10px 15px;
+	margin: 6px 0;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+input[type=number], select { 
+	padding: 10px 15px;
+	margin: 6px;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+button[type=submit] { 
+	width: 250px;
+}
+
+button[type=submit]:hover { 
+	background-color: "#333";
+}
+
+select { 
+	width: 100px;
+}
+
+.form-1 { 
+	display: grid;
+	grid-template-columns: 10px 5px 5px black;
+	grid-gap: 10px;
+}
+
+
+.widget { 
+	border: 5px ridge black;
+	box-shadow: 4px 2px;
+	text-align: center;
+}
+
+.title { 
+	margin-left: 250px;
+}
+
+.form-group { 
+	margin-top: -15px;
+ }
+
+ .infoHead { 
+ 	margin-left: 100px;
+}
+
+.inputBox { 
+	width: 220px;
+	margin-left: 20px;
+ }
+
+
+.asterisk{ 
+	margin-left: 5px;
+	color: red;
+ }
+
+ .approved { 
+ 	border: 2px solid black;
+ 	margin-left: 20px;
+	margin-top: 15px;
+	color: black;
+	font-size: 18px;
+	background-color: green;
+	width: 250px;
+	text-align: center;
+	padding: 5px;
+ }
+
+.error {
+	border: 2px solid black;
+	margin-left: 20px;
+	margin-top: 15px;
+	color: black;
+	font-size: 18px;
+	background-color: red;
+	width: 250px;
+	text-align: center;
+	padding: 5px;
+}

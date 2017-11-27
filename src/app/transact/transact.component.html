@@ -1,0 +1,113 @@
+<h1 class="title">Bob's Widgets</h1>
+
+<img class="widget" src="/assets/imgs/widget.jpg" />
+<p> Welcome to Bob's Widgets! We are the exclusive purveyor of the wondrous device invented by Homer J. Simpson that has taken America by storm. This small device can help assist every aspect of your life and help bring greater fulfillment to your everday routine.</p> 
+
+	<form class="transactionForm" ngSubmit="purchase()">
+		<h2 class="header2">Customer Information</h2>
+		<div class="form-1">
+			<div class="form-group">
+				<label for="name">Input your name as written on card
+					<span class="asterisk">*</span> <br />
+				</label>
+				<input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" placeholder="First Name Last Name" #name="ngModel" required />
+				<div [hidden]="name.valid || name.pristine" class="alert alert-danger validation"> Name required </div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email<span class="asterisk">*</span><br />
+				</label>
+				<input class="form-control" type="email" [(ngModel)]="model.email" name="email" placeholder="Your Email Address" #email="ngModel" required />
+				<div [hidden]="email.valid || email.pristine" class="alert alert-danger validation">Valid Credit Card Required
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cardNum">Card Number<span class="asterisk">*</span><br />
+				</label>
+				<input class="form-control" type="text" (click)="clickNum()" maxlength="20" size="20" [(ngModel)]="model.cardNum" name="cardNum" placeholder="CC#" #cardNum="ngModel" required />
+				<div [hidden]="cardNum.valid || cardNum.pristine" class="alert alert-danger validation">Valid Credit Card Required
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="exp">Expiration date<span class="asterisk">*</span><br />
+				</label>
+				<input class="form-control" type="text" (click)="clickExpiration()" placeholder="MM/YY" [textMask] = "{mask: maskDate}" [(ngModel)]="model.expiration" name="expiration" #expiration="ngModel" required />
+				<div [hidden]="expiration.valid || expiration.pristine" class="alert alert-danger validation">CC Expiration Date is Required</div>
+			</div>
+			<div class="form-group">
+				<label for="CVV">Credit Card Security Number (CVV)
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control cvv" type="text" maxlength="4" size="4" [(ngModel)]="model.cvv" name="ccv" placeholder="012"  #cvv="ngModel" required />
+				<div [hidden]="cvv.valid || cvv.pristine" class="alert alert-danger validation">A Valid CVV/CVC Is Required
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address">Billing Address
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control address" type="text" required [(ngModel)]="model.address" name="address" placeholder="Billing Address" #address="ngModel" required />
+				<div [hidden]="address.valid || address.pristine" class="alert alert-danger validation">
+					Your billing address is required.
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="billingCity">Billing City
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control city" type="text" required [(ngModel)]="model.billingCity" name="billingCity" placeholder="Billing Address" #billingCity="ngModel" required />
+				<div [hidden]="billingCity.valid || billingCity.pristine" class="alert alert-danger validation">
+					Your billing city is required.
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="billingState">Billing State
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control state" type="text" required [(ngModel)]="model.billingState" name="billingState" placeholder="Billing State" #billingState="ngModel" required />
+				<div [hidden]="billingState.valid || billingState.pristine" class="alert alert-danger validation">A State or US Territory is Required
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="ZIPCode">Billing ZIP Code
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control zip-code" type="text" required [(ngModel)]="model.ZIPCode" name="ZIPCode" placeholder="Billing ZIP Code" #ZIPCode="ngModel" required />
+				<div [hidden]="ZIPCode.valid || ZIPCode.pristine" class="alert alert-danger validation">A Valid ZIP Code is Required.
+				</div>
+			</div>
+			<button class="btn btn-success submit" type="submit" value="Submit" (click)="purchase()" [disabled]="!name.valid || !cardNum.valid || !email.valid || !expiration.valid || !cvv.valid || !address.valid || !billingCity.valid || !billingState.valid || !ZIPCode.valid">Purchase your widget!</button>
+			<div class="approved" *ngIf="approved">Approved. Please check your email receipt for your transaction ID.</div>
+			<div class="error" *ngIf="declined">Card Declined</div>
+			<div class="error" *ngIf="invalidCard">Invalid Card</div>
+			<div class="error" *ngIf="insufficientFunds">Insufficient Funds</div>
+			<div class="error" *ngIf="expired">Expired Credit/Debit Card</div>
+			<div class="error" *ngIf="carderror">There is an issue with your card, please contact customer service at [number].</div>
+
+		</div>
+	</form>
+
+	<div style = "height: 200px"></div>
+
+	<h2>Not Satisfied With Your Widget?</h2>
+	<p>We're sorry you are disatisfied with this wondrous device. However, we do believe in total satisfaction. Please input your transaction reference id that was sent with your email receipt, put the widget in the mail back to [address] and we will refund the entirity of your purchase. We'll even pay the shipping!</p>
+
+
+	<form class="transactionForm" ngSubmit="refund()">
+
+
+		<div class="form-group">
+				<label for="refNumber">Transaction Reference ID Number
+					<span class="asterisk">*</span>
+				</label><br />
+				<input class="form-control state" type="text" required [(ngModel)]="model.refundNumber" (click)="clickRefund()" id="refundNumber" name="refundNumber" placeholder="Your transaction ID" #refundNumber="ngModel" required />
+				<div [hidden]="refundNumber.valid || refundNumber.pristine" class="alert alert-danger validation">Please input a valid reference number.
+				</div><br /><br />
+
+				<button class="btn btn-success submit" type="submit" value="Submit" (click)="refund()" [disabled]="!refundNumber.valid"> Refund your widget!</button>
+		
+			<div class="approved" *ngIf="refundApproved">Approved! Your refund is on its way.</div>
+			<div class="error" *ngIf="error">We're sorry, we can't find that particular reference number. Please check your number and try again.</div>
+			<div class="error" *ngIf="doubleRefund">We're sorry, but we refunded that already!</div>
+		</div>
+
+	</form>
