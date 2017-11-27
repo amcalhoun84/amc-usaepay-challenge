@@ -18,7 +18,7 @@ export class TransactComponent implements OnInit {
 	amounts:any[] = [{'amount': '38.36'}];
 	selectedAmount = this.amounts[0];
 	custom: string = "";
-	model = new Customer("", "", "", "", "", "", "", "", "", "", "Bob's Widgets - #1 in Life Fulfillment Devices", this.amounts[0].amount);
+	model = new Customer("", "", "", "", "", "", "", "", "", "", "Bob's Widgets - #1 in Life Fulfillment Devices", this.amounts[0].amount, "");
 	approved: boolean;
 	declined: boolean;
 	invalidCard: boolean;
@@ -27,7 +27,7 @@ export class TransactComponent implements OnInit {
 	refundApproved: boolean;
 	carderror: boolean;
 	error: boolean;
-	doublerefund: boolean;
+	doubleRefund: boolean;
 	widgetAmount: any; 
 	refnum: string;
 
@@ -140,19 +140,22 @@ export class TransactComponent implements OnInit {
 				}
 
 		});
-		let response = this.usaepayApi.purchase();
-		console.log("RESPONSE:" + response);
+		let response = this.usaepayApi.post(obj);
+		/** console.log("RESPONSE:" + response); **/
 
-		response.subscribe(response => {
-			this.submissionData.emit(response);
-		}
+		response.subscribe(resp => {
+			this.submissionData.emit(resp);
+			this.submissionData = resp;
+			console.log(resp);
+			console.log(this.submissionData);
+		});
 
 	}
 
 	public refund() {
 		let obj = { 
 			"command" : "refund",
-			"transid" : this.model.refundNumber;
+			"transid" : this.model.refundNumber
 		}
 		this.usaepayApi.post(obj).subscribe(data => {
 			if(data.result === "Approved") { 
@@ -162,12 +165,12 @@ export class TransactComponent implements OnInit {
 			}
 			else if(data.error === "Original transaction not an approved sale" || data.error === "Unable to find original transaction.") { 
 				this.error = true; 
-				this.approved = false; 
+				this.refundApproved = false; 
 				this.doubleRefund = false; 
 			}
 			else if(data.error === "Amount exceeds original transaction amount.") {
 				this.doubleRefund = true; 
-				this.approved = false; 
+				this.refundApproved = false; 
 				this.error = false; 
 			} 
 		})

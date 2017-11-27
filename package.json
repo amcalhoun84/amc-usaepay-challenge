@@ -1,6 +1,6 @@
 {
   "name": "usaepay-coding-challenge",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -45,5 +45,16 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.",
+  "main": "./src/node server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amcalhoun84/amc-usaepay-challenge.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/amcalhoun84/amc-usaepay-challenge/issues"
+  },
+  "homepage": "https://github.com/amcalhoun84/amc-usaepay-challenge#readme"
 }

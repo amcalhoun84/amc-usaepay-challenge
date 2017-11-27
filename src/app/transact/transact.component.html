@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<button class="btn btn-success submit" type="submit" value="Submit" (click)="purchase()" [disabled]="!name.valid || !cardNum.valid || !email.valid || !expiration.valid || !cvv.valid || !address.valid || !billingCity.valid || !billingState.valid || !ZIPCode.valid">Purchase your widget!</button>
-			<div class="approved" *ngIf="approved">Approved. Please check your email receipt for your transaction ID.</div>
+			<div class="approved" *ngIf="approved">Approved. Please check your email receipt for your transaction ID. Your reference number is {{ submissionData.refnum }} and payment amount is: {{ submissionData.auth_amount }} </div>
 			<div class="error" *ngIf="declined">Card Declined</div>
 			<div class="error" *ngIf="invalidCard">Invalid Card</div>
 			<div class="error" *ngIf="insufficientFunds">Insufficient Funds</div>

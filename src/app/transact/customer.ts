@@ -3,7 +3,7 @@
 export class Customer { 
 	constructor(
 		public name: string,
-		public email: string.
+		public email: string,
 		public cardNum: string,
 		public cvc: string,
 		public expiration: string,
@@ -18,7 +18,9 @@ export class Customer {
 		/** And finally, the amount **/
 
 		public description: string,
-		public amount: string
+		public amount: string,
+
+		public refundNumber: string
 		
 	) { }
 }
