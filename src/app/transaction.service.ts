@@ -12,7 +12,7 @@ export class TransactionService{
 constructor(private _http: Http) { }
 
 	public post(obj) { 
-		return this._http.post('http://35.166.131.12:3000/api/transactions', obj)
+		return this._http.post('http://localhost:3000/api/transactions', obj)
 					.map(result=>this.result = result.json());
 
 	}
